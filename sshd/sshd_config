@@ -1,0 +1,6 @@
+Port 22
+Protocol 2
+
+#set this to 'yes' to enable PAM authentication
+UsePAM no
+

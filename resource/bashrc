@@ -1,0 +1,3 @@
+PS1="\[\033[0;32m\][@\W]\$ \[\033[0m\]"
+alias exit='echo Do not use command exit for logout operation. Use Ctrl-p,Ctrl-q.'
+cd
