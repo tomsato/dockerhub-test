@@ -1,4 +1,4 @@
-FROM centos:6
+FROM centos:6.8
 
 MAINTAINER tomsato
 
@@ -19,7 +19,7 @@ RUN mysql_install_db --datadir=/var/lib/mysql --user=mysql
 
 # dev tool
 RUN yum -y groupinstall "Development tools"
-RUN yum -y source-highlight
+# RUN yum -y source-highlight
 
 # httpd
 RUN yum -y install httpd
