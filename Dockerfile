@@ -19,7 +19,7 @@ RUN mysql_install_db --datadir=/var/lib/mysql --user=mysql
 
 # dev tool
 RUN yum -y groupinstall "Development tools"
-# RUN yum -y source-highlight
+RUN yum -y install source-highlight
 
 # httpd
 RUN yum -y install httpd
