@@ -1,11 +1,11 @@
-FROM centos:6.7
+FROM centos:6
 
 MAINTAINER tomsato
 
 RUN yum -y update
 
 # util
-RUN yum -y install vim git tar
+RUN yum -y install wget vim git tar
 
 # PHP
 RUN yum -y install epel-release
