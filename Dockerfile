@@ -9,7 +9,8 @@ RUN yum -y install wget vim git tar
 
 # PHP
 RUN yum -y install epel-release
-RUN yum -y --enablerepo=remi,epel,rpmforge -y install php php-mbstring php-pear
+RUN rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+RUN yum -y install --enablerepo=remi,remi-php56 php php-devel php-mbstring php-pdo php-gd
 
 # mysql
 RUN yum -y install http://dev.mysql.com/get/mysql-community-release-el6-5.noarch.rpm
