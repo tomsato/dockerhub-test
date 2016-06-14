@@ -5,7 +5,7 @@ MAINTAINER tomsato
 RUN yum -y update
 
 # util
-RUN yum -y install wget vim git tar
+RUN yum -y install vim git tar
 
 # PHP
 RUN yum -y install epel-release
