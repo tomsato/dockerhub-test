@@ -15,7 +15,6 @@ RUN yum -y install --enablerepo=remi,remi-php56 php php-devel php-mbstring php-p
 # httpd
 RUN wget -O /etc/yum.repos.d/epel-httpd24.repo http://repos.fedorapeople.org/repos/jkaluza/httpd24/epel-httpd24.repo
 RUN yum -y install --enablerepo=epel-httpd24 httpd24
-RUN mkdir /var/www/
 RUN ln -s /opt/rh/httpd24/root/etc/httpd     /etc/httpd24
 RUN ln -s /opt/rh/httpd24/root/var/www/html  /var/www/html24
 RUN ln -s /opt/rh/httpd24/root/var/log/httpd /var/log/httpd24
