@@ -7,10 +7,6 @@ RUN yum -y update
 # util
 RUN yum -y install wget vim git tar
 
-# dev tool
-RUN yum -y groupinstall "Development tools"
-RUN yum -y install source-highlight
-
 # httpd
 RUN wget -O /etc/yum.repos.d/epel-httpd24.repo http://repos.fedorapeople.org/repos/jkaluza/httpd24/epel-httpd24.repo
 RUN yum -y install --enablerepo=epel-httpd24 httpd24
@@ -30,6 +26,10 @@ RUN yum -y install --enablerepo=remi,remi-php56 php php-devel php-mbstring php-p
 RUN yum -y install http://dev.mysql.com/get/mysql-community-release-el6-5.noarch.rpm
 RUN yum -y install mysql-community-server
 RUN mysql_install_db --datadir=/var/lib/mysql --user=mysql
+
+# dev tool
+RUN yum -y groupinstall "Development tools"
+RUN yum -y install source-highlight
 
 # ssh
 RUN yum -y install passwd openssh openssh-server openssh-clients sudo
