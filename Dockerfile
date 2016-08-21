@@ -10,6 +10,7 @@ RUN yum -y install wget vim git tar
 # httpd
 RUN wget -O /etc/yum.repos.d/epel-httpd24.repo http://repos.fedorapeople.org/repos/jkaluza/httpd24/epel-httpd24.repo
 RUN yum -y install --enablerepo=epel-httpd24 httpd24
+RUN sudo mkdir /var/www/
 RUN ln -s /opt/rh/httpd24/root/etc/httpd /etc/httpd24
 RUN ln -s /opt/rh/httpd24/root/var/www/html /var/www/html24
 ADD src/index.html /var/www/html24/
