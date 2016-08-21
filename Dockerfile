@@ -22,8 +22,15 @@ RUN yum -y groupinstall "Development tools"
 RUN yum -y install source-highlight
 
 # httpd
-RUN yum -y install httpd
-ADD src/index.html /var/www/html/
+RUN wget -O /etc/yum.repos.d/epel-httpd24.repo http://repos.fedorapeople.org/repos/jkaluza/httpd24/epel-httpd24.repo
+RUN yum -y install --enablerepo=epel-httpd24 httpd24
+RUN ln -s /opt/rh/httpd24/root/etc/httpd /etc/httpd24
+RUN ln -s /opt/rh/httpd24/root/var/www/html /var/www/html24
+ADD src/index.html /var/www/html24/
+RUN sed -i 's/#ServerName www.example.com:80/ServerName www.example.com:80/' /etc/httpd24/conf/httpd.conf
+RUN chkconfig httpd24-httpd on
+RUN service httpd24-httpd restart
+
 
 # ssh
 RUN yum -y install passwd openssh openssh-server openssh-clients sudo
@@ -34,13 +41,15 @@ RUN echo 'tomsato ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 ADD sshd/sshd_config /etc/ssh/sshd_config
 RUN /etc/init.d/sshd start;/etc/init.d/sshd stop
 
-# bashrc
-COPY resource/bashrc /etc/bashrc
+# dotfile
+COPY resource/bashrc    /etc/bashrc
+COPY resource/vimrc     /home/tomsato/.vimrc
+COPY resource/gitconfig /home/tomsato/.gitconfig
 
 # supervisor
 RUN yum -y install python-setuptools
 RUN easy_install 'supervisor == 3.2.0' 'supervisor-stdout == 0.1.1' && mkdir -p /var/log/supervisor
-ADD supervisor/supervisord.conf /etc/supervisord.conf
+ADD conf/supervisord.conf /etc/supervisord.conf
 
 # expose for sshd, httpd, mysql
 EXPOSE 22 80 3306
