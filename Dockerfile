@@ -7,21 +7,23 @@ RUN yum -y update
 # util
 RUN yum -y install wget vim git tar
 
-# httpd
-RUN wget -O /etc/yum.repos.d/epel-httpd24.repo http://repos.fedorapeople.org/repos/jkaluza/httpd24/epel-httpd24.repo
-RUN yum -y install --enablerepo=epel-httpd24 httpd24
-RUN mkdir /var/www/
-RUN ln -s /opt/rh/httpd24/root/etc/httpd /etc/httpd24
-RUN ln -s /opt/rh/httpd24/root/var/www/html /var/www/html24
-ADD src/index.html /var/www/html24/
-RUN sed -i 's/#ServerName www.example.com:80/ServerName www.example.com:80/' /etc/httpd24/conf/httpd.conf
-RUN chkconfig httpd24-httpd on
-RUN service httpd24-httpd restart
-
 # PHP
 RUN yum -y install epel-release
 RUN rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
 RUN yum -y install --enablerepo=remi,remi-php56 php php-devel php-mbstring php-pdo php-gd
+
+# httpd
+RUN wget -O /etc/yum.repos.d/epel-httpd24.repo http://repos.fedorapeople.org/repos/jkaluza/httpd24/epel-httpd24.repo
+RUN yum -y install --enablerepo=epel-httpd24 httpd24
+RUN mkdir /var/www/
+RUN ln -s /opt/rh/httpd24/root/etc/httpd     /etc/httpd24
+RUN ln -s /opt/rh/httpd24/root/var/www/html  /var/www/html24
+RUN ln -s /opt/rh/httpd24/root/var/log/httpd /var/log/httpd24
+ADD src/index.html /var/www/html24/
+RUN sed -i 's/#ServerName www.example.com:80/ServerName www.example.com:80/' /etc/httpd24/conf/httpd.conf
+RUN yum -y remove httpd
+RUN chkconfig httpd24-httpd on
+RUN service httpd24-httpd restart
 
 # MySQL
 RUN yum -y install http://dev.mysql.com/get/mysql-community-release-el6-5.noarch.rpm
