@@ -47,10 +47,10 @@ COPY dotfiles/gitconfig /home/tomsato/.gitconfig
 RUN chown tomsato:users /home/tomsato/.vimrc
 RUN chown tomsato:users /home/tomsato/.gitconfig
 # vim-plug
-RUN mkdir -p ~/.vim/plugged
-RUN mkdir -p ~/.vim/autoload/
-RUN curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-RUN vim -u ~/.vimrc +':PlugInstall' +q +q
+RUN mkdir -p /home/tomsato/.vim/plugged
+RUN mkdir -p /home/tomsato/.vim/autoload/
+RUN curl -fLo /home/tomsato/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+RUN vim -u /home/tomsato/.vimrc +':PlugInstall' +q +q
 
 # supervisor
 RUN yum -y install python-setuptools
