@@ -21,8 +21,6 @@ RUN ln -s /opt/rh/httpd24/root/var/log/httpd /var/log/httpd24
 ADD src/index.html /var/www/html24/
 RUN sed -i 's/#ServerName www.example.com:80/ServerName www.example.com:80/' /etc/httpd24/conf/httpd.conf
 RUN yum -y remove httpd
-RUN chkconfig httpd24-httpd on
-RUN service httpd24-httpd restart
 
 # MySQL
 RUN yum -y install http://dev.mysql.com/get/mysql-community-release-el6-5.noarch.rpm
@@ -43,9 +41,16 @@ ADD sshd/sshd_config /etc/ssh/sshd_config
 RUN /etc/init.d/sshd start;/etc/init.d/sshd stop
 
 # dotfile
-COPY resource/bashrc    /etc/bashrc
-COPY resource/vimrc     /home/tomsato/.vimrc
-COPY resource/gitconfig /home/tomsato/.gitconfig
+COPY dotfiles/bashrc    /etc/bashrc
+COPY dotfiles/vimrc     /home/tomsato/.vimrc
+COPY dotfiles/gitconfig /home/tomsato/.gitconfig
+RUN chown tomsato:users /home/tomsato/.vimrc
+RUN chown tomsato:users /home/tomsato/.gitconfig
+# vim-plug
+RUN mkdir -p ~/.vim/plugged
+RUN mkdir -p ~/.vim/autoload/
+RUN curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+RUN vim -u ~/.vimrc +':PlugInstall' +q +q
 
 # supervisor
 RUN yum -y install python-setuptools
