@@ -26,40 +26,40 @@ if has('vim_starting')
   end
 endif
 
-"""" vim-plugによるplugin管理
-" 使い方
-" :PlugInstall
-" :PlugStatus
-call plug#begin('~/.vim/plugged')
-    " vimでreactの環境を整える
-    Plug 'pangloss/vim-javascript'
-    Plug 'mxw/vim-jsx'
-    " color schema
-    Plug 'ciaranm/inkpot'
-    " 行末のスペースを色付けする
-    Plug 'bronson/vim-trailing-whitespace'
-    " 入力補完機能を提供してくれる
-    Plug 'Shougo/neocomplcache'
-	" html閉じタグを自動挿入する
-	Plug 'alvan/vim-closetag'
-call plug#end()
-
-"""" 以下pluginの設定
-"" ■ colorschemeの設定
-if filereadable("~/.vim/plugged/inkpot/colors/inkpot.vim")
-	  colorscheme inkpot
-endif
-"" ■ neocomplcacheの設定
-" vim起動時に有効化する設定
-let g:neocomplcache_enable_at_startup = 1
-" _区切りの補完を有効化する
-let g:neocomplcache_enable_underbar_completion = 1
-" シンタックスをキャッシュする時の最小文字を3にする
-let g:neocomplcache_min_syntax_length = 3
-" 補完をキャンセル
-inoremap <expr><C-g>  neocomplcache#undo_completion()
-" シェルの補完のように共通する部分を補完する
-inoremap <expr><C-l>  neocomplcache#complete_common_string()
-" 現在選択している候補をキャンセルしポップアップを閉じる
-inoremap <expr><C-e>  neocomplcache#cancel_popup()
+" " vim-plugによるplugin管理
+" " 使い方
+" " :PlugInstall
+" " :PlugStatus
+" call plug#begin('~/.vim/plugged')
+"     " vimでreactの環境を整える
+"     Plug 'pangloss/vim-javascript'
+"     Plug 'mxw/vim-jsx'
+"     " color schema
+"     Plug 'ciaranm/inkpot'
+"     " 行末のスペースを色付けする
+"     Plug 'bronson/vim-trailing-whitespace'
+"     " 入力補完機能を提供してくれる
+"     Plug 'Shougo/neocomplcache'
+" 	" html閉じタグを自動挿入する
+" 	Plug 'alvan/vim-closetag'
+" call plug#end()
+"
+" " 以下pluginの設定
+" ■ colorschemeの設定
+" if filereadable("~/.vim/plugged/inkpot/colors/inkpot.vim")
+" 	  colorscheme inkpot
+" endif
+" ■ neocomplcacheの設定
+" " vim起動時に有効化する設定
+" let g:neocomplcache_enable_at_startup = 1
+" " _区切りの補完を有効化する
+" let g:neocomplcache_enable_underbar_completion = 1
+" " シンタックスをキャッシュする時の最小文字を3にする
+" let g:neocomplcache_min_syntax_length = 3
+" " 補完をキャンセル
+" inoremap <expr><C-g>  neocomplcache#undo_completion()
+" " シェルの補完のように共通する部分を補完する
+" inoremap <expr><C-l>  neocomplcache#complete_common_string()
+" " 現在選択している候補をキャンセルしポップアップを閉じる
+" inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
