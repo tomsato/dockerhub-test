@@ -40,6 +40,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'bronson/vim-trailing-whitespace'
     " 入力補完機能を提供してくれる
     Plug 'Shougo/neocomplcache'
+	" html閉じタグを自動挿入する
+	Plug 'alvan/vim-closetag'
 call plug#end()
 
 """" 以下pluginの設定
