@@ -45,11 +45,11 @@ endif
 " call plug#end()
 "
 " " 以下pluginの設定
-" ■ colorschemeの設定
-" if filereadable("~/.vim/plugged/inkpot/colors/inkpot.vim")
+" " ■ colorschemeの設定
+" if filereadable(expand('~/.vim/plugged/inkpot/colors/inkpot.vim'))
 " 	  colorscheme inkpot
 " endif
-" ■ neocomplcacheの設定
+" " ■ neocomplcacheの設定
 " " vim起動時に有効化する設定
 " let g:neocomplcache_enable_at_startup = 1
 " " _区切りの補完を有効化する
