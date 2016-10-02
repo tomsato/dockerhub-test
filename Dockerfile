@@ -10,7 +10,7 @@ RUN yum -y install wget vim git tar
 # PHP
 RUN yum -y install epel-release
 RUN rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
-RUN yum -y install --enablerepo=remi,remi-php56 php php-devel php-mbstring php-pdo php-gd
+RUN yum -y install --enablerepo=remi,remi-php56 php php-devel php-mbstring php-pdo php-gd php-xml
 
 # httpd
 RUN wget -O /etc/yum.repos.d/epel-httpd24.repo http://repos.fedorapeople.org/repos/jkaluza/httpd24/epel-httpd24.repo
