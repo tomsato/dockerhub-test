@@ -1,4 +1,4 @@
-FROM centos:6.8
+FROM centos:7
 
 MAINTAINER tomsato
 
@@ -9,7 +9,7 @@ RUN yum -y install wget vim git tar
 
 # PHP
 RUN yum -y install epel-release
-RUN rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+RUN rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
 RUN yum -y install --enablerepo=remi,remi-php56 php php-devel php-mbstring php-pdo php-gd php-xml
 
 # httpd
@@ -23,7 +23,7 @@ RUN sed -i 's/#ServerName www.example.com:80/ServerName www.example.com:80/' /et
 RUN yum -y remove httpd
 
 # MySQL
-RUN yum -y install http://dev.mysql.com/get/mysql-community-release-el6-5.noarch.rpm
+RUN yum -y install http://dev.mysql.com/get/mysql57-community-release-el7-7.noarch.rpm
 RUN yum -y install mysql-community-server
 RUN mysql_install_db --datadir=/var/lib/mysql --user=mysql
 
