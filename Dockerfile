@@ -2,6 +2,11 @@ FROM centos:6
 
 MAINTAINER tomsato
 
+# yumが遅いので一旦fastestmirrorを無効にする
+RUN sed -i 's/enabled=1/enabled=0/' /etc/yum/pluginconf.d/fastestmirror.conf
+
+RUN yum -y remove yum-plugin-fastestmirror
+
 RUN yum -y update
 
 # util
@@ -56,5 +61,3 @@ ADD conf/supervisord.conf /etc/supervisord.conf
 EXPOSE 22 80 3306
 
 CMD ["/usr/bin/supervisord"]
-
-
